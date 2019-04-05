@@ -1,0 +1,16 @@
+//Name: Jimmy Lin
+//Date: 11/11/2014
+//Section: C
+//File: main.cpp
+//Description: 
+
+#include <iostream>
+#include "time.h"
+
+using namespace std;
+
+int main()
+{
+
+  return 0;
+}

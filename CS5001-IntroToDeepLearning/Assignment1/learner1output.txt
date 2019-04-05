@@ -1,0 +1,13 @@
+CS-5001: HW#1
+Programmer: Jimmy Lin
+
+Training
+Using random seed = 1234567890
+Using learning rate eta = 1.0E-15
+After 5000 iterations:
+Weights:
+w0 = 32.041058719993785
+w1 = 34.21668400421309
+
+Validation
+Sum-of-Squares Error = 1.0398702258501458E8

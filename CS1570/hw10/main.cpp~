@@ -1,0 +1,51 @@
+// Name: Luka Ivicevic
+// Section: E
+// File: main.cpp
+// Desc: Simulation of a doctor
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include "x_rayer.h"
+#include "patient.h"
+#include "hospital_room.h"
+
+using namespace std;
+
+
+int main()
+{
+  srand(time(NULL)); // Random seed
+  
+  Hospital_Room room;
+  Patient patient1;
+  Patient patient2;
+  Patient patient3;
+  
+  // Print initial states of the objects
+  cout<<"**Initial States**"<<endl;
+  
+  cout<<room;
+  cout<<patient1;
+  cout<<patient2;
+  cout<<patient3;
+  
+  // Run patient1 through 5 times and print each time
+  for (int i = 0; i < 5; i++)
+  {
+    cout<<"Paitent 1: Run: "<<i<<endl;
+    room.admit(patient1);
+    cout<<patient1;
+  }      
+  
+  // Run patient1 and 2 twice and print
+  room.admit(patient2);
+  room.admit(patient3);
+
+  cout<<"Patient 2:"<<endl;
+  cout<<patient2;
+  cout<<"Paitent 3:"<<endl;
+  cout<<patient3;
+  
+  return 0;
+}

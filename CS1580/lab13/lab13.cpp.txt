@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+class Rectangle
+{
+ private:
+     int length;
+     int width;
+
+ public:
+     Rectangle();
+     Rectangle(int rect_length, int rect_width);
+     
+     void operator !();
+     Rectangle & operator *= (const Rectangle & rec);
+
+     friend Rectangle operator + (const Rectangle &rec1 , const Rectangle &rec2);
+     friend ostream & operator << (ostream & stream, const Rectangle & rec);
+};
+
+int main()
+{
+	Rectangle A(3, 2);
+	Rectangle B(9,5);
+	Rectangle C;
+	cout <<"A: " << A;
+	cout <<"B: " << B;
+	cout <<"C: " << C;
+	C = A + B;
+	cout <<"C = A + B ==> C: " << C;
+	C *= A;
+	cout <<"C *= A    ==> C: " << C;
+	!C;
+	cout <<"!C        ==> C: " << C;
+
+	return 0;
+}
+//// here Define your functions

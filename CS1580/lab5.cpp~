@@ -1,0 +1,101 @@
+//Name:	Jimmy Lin
+//Date: 9/23/2014
+//Section: C
+//File: lab5.cpp
+//Description:
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+  //variables
+  char userChoice; //users input for menu
+  int votes = 0; //number of votes
+  int apple = 0; //number of apple votes
+  int lenovo = 0; //number of lenovo votes
+  int dell = 0; //number of dell votes
+  int hp = 0; //number of hp votes
+  int wasted = 0; //number of wasted votes
+  float applePercent; //apple's vote percentage
+  float lenovoPercent; //lenovo's vote percentage
+  float dellPercent; //dell's vote percentage
+  float hpPercent; //hp's vote percentage
+  float wastedPercent; //wasted votes percentage
+  
+  //welcomes the user
+  cout<<"~~~Welcome to E-Voting System~~~"<<endl;
+  
+  //shows main menu
+  //loops until user has voted 10 times
+  for(int x = 0; x <= 9; x++)
+  {
+    cout<<"Here are the Laptop brands"<<endl;
+    cout<<"A: Apple"<<endl;
+    cout<<"B: Lenovo"<<endl;
+    cout<<"C: Dell"<<endl;
+    cout<<"D: HP"<<endl;
+    cout<<"What brand of laptop do you vote for? ";
+    cin>>userChoice;
+    //determines what the user has picked
+    switch(userChoice)
+    {
+      //if user votes for apple
+      case 'a':
+      case 'A':
+        cout<<"You voted for Apple"<<endl;
+        apple++; //increases apple count by 1
+        votes++; //increases vote count by 1
+        break;
+      //if user votes for lenovo
+      case 'b':
+      case 'B':
+        cout<<"You voted for Lenovo"<<endl;
+        lenovo++; //increases lenovo count by 1
+        votes++; //increases vote count by 1
+        break;
+      //if user votes for dell
+      case 'c':
+      case 'C':
+        cout<<"You voted for Dell"<<endl;
+        dell++; //increases dell count by 1
+        votes++; //increases vote count by 1
+        break;
+      //if user votes for hp
+      case 'd':
+      case 'D':
+        cout<<"You voted for HP"<<endl;
+        hp++; //incrases hp count by 1
+        votes++; //increases vote count by 1
+        break;
+      //invalid input
+      default:
+        cout<<"You wasted your vote"<<endl;
+        wasted++; //increases wasted votes count by 1
+        votes++; //increases vote count by 1   
+    }
+  }
+  
+  //determines the percentage of votes for each brand
+  applePercent = static_cast<float>(apple) / votes;
+  lenovoPercent = static_cast<float>(lenovo) / votes;
+  dellPercent = static_cast<float>(dell) / votes;
+  hpPercent = static_cast<float>(hp) / votes;
+  wastedPercent = static_cast<float>(wasted) / votes;
+  
+  //displays results
+  cout<<"*~* Here is the E-Voting Summary *~*"<<endl;
+  cout<<"Laptops \t Votes \t Percentages(%)"<<endl;
+  cout<<"Apple \t\t "<<apple<<" \t "<<applePercent<<endl;
+  cout<<"Lenovo \t\t "<<lenovo<<" \t "<<lenovoPercent<<endl;
+  cout<<"Dell \t\t "<<dell<<" \t "<<dellPercent<<endl;
+  cout<<"HP \t\t "<<hp<<" \t "<<hpPercent<<endl; 
+  cout<<"Wasted Votes \t "<<wasted<<" \t "<<wastedPercent<<endl;
+  cout<<endl;
+  cout<<endl;
+  cout<<"Thanks for using the E-Voting system"<<endl;
+  cout<<"Have a Nice Day!"<<endl;
+ 
+  return 0;
+}

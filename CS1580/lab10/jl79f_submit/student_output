@@ -1,0 +1,17 @@
+Script started on Tue 28 Oct 2014 07:09:55 PM CDT
+g++ -Wall -W -s -pedantic-errors *.cpp -o 54drv && ./54drv && rm ./54drv
+Wecleom! Please enter your information to sign up
+Enter your First Name: abbey
+Enter your Last Name: smith
+Enter your Password (7-15 characters): abb   abbsmi
+Enter your Password (7-15 characters): abbsmi&^
+Confirm your password: abbsmi&
+Enter your Password (7-15 characters): abbsmi&^
+Confirm your password: abbsmi&^
+*********************************
+Account information Summary:
+First Name: abbey
+Last Name: smith
+User ID: abbeysmith
+Password: ********
+Thanks!

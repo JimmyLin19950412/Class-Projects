@@ -1,0 +1,9 @@
+//Name:	Jimmy Lin
+//Date:	10/7/2014
+//Section: C
+//File: randomzer.h
+//Description: contains function prototypes
+
+#include<iostream>
+
+using namespace std;

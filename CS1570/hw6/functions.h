@@ -1,0 +1,174 @@
+//Name: Jimmy Lin
+//Date:	10/15/2014
+//File: functions.h
+//Section: E
+//Description: contains the header file for main.cpp
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+//structures-------------------
+
+//patient one's structure
+struct patientOne
+{
+  string m_name; //name of the patient
+  float m_p1; //protein 1
+  float m_p2; //protein 2
+  int m_p3; //protein 3
+  int m_p4; //protein 4
+  int m_p5; //protein 5
+};
+
+//patient two's structure
+struct patientTwo
+{
+  string m_name; //name of the patient
+  float m_p1; //protein 1
+  float m_p2; //protein 2
+  int m_p3; //protein 3
+  int m_p4; //protein 4
+  int m_p5; //protein 5        
+};
+
+//patient three's sturcture
+struct patientThree
+{
+  string m_name; //name of the patient
+  float m_p1; //protein 1
+  float m_p2; //protein 2
+  int m_p3; //protein 3
+  int m_p4; //protein 4
+  int m_p5; //protein 5         
+};
+
+//function prototypes----------
+
+/*Description: reads in the name of the three patients and assigns them to
+a structure */
+//Pre: a structure with a string
+//Post: copies the name the user entered into patient structure
+//Return: none
+void readName(patientOne & name1, patientTwo & name2, patientThree & name3);
+
+//Description: generates random numbers
+//Pre: requires 1 integer to determine the max number
+//Post: none
+//Return: random number ranging from 0 to max num
+float randomNumber(int minNum, int maxNum, int decimal);
+
+//Description: generates random number abd assings it to p1, p2, and p3
+//Pre: requires a patient structure
+//Post: changes patient's p1, p2, and p3 value
+//Return: none
+template <typename T>
+void toneA(T & patient)
+{
+  //generates a random number btween 0-100 for p1
+  patient.m_p1 = randomNumber(0, 100, 1);
+  
+  //generates a random number between 0-100 for p2
+  patient.m_p2 = randomNumber(0, 1000, 10);
+  
+  //generates a random number beween 0-10 for p3
+  patient.m_p3 = randomNumber(0, 10, 1);
+}
+
+//Description: generate random number and assigns it to p2 and p4
+//Pre: requires a patient structure
+//Post: changes patient's p2 and p4 value
+//Return: none
+template <typename T>
+void toneG(T & patient)
+{
+  //variable
+  //generates a random number between 0-100 for p2
+  float temp_p2 = randomNumber(0, 1000, 10);
+  
+  //if patient's p2 is higher then the new p2 then take new p2
+  if(patient.m_p2 > temp_p2) {
+    patient.m_p2 = temp_p2;
+  }
+  
+  //generates a random number between 10-50 for p4
+  patient.m_p4 = randomNumber(10, 50, 1);
+}
+
+//Description: generate random number and assigns it to p1, p4, and p5
+//Pre: requires a patient structure
+//Post: cha
+//Return: none
+template <typename T>
+void toneH(T & patient)
+{
+  //variables
+  //generates a random number between 0-100 for p1
+  float temp_p1 = randomNumber(0, 100, 1);
+  //generates a random number between 10-50 for p4
+  float temp_p4 = randomNumber(10, 50, 1);
+  
+  //if patient's p1 is smaller then the new p1 then take new p1
+  if(patient.m_p1 < temp_p1) {
+    patient.m_p1 = temp_p1;
+  }
+  
+  //if patient's p4 is smaller then the new p4 then take new p4
+  if(patient.m_p4 < temp_p4) {
+    patient.m_p4 = temp_p4;
+  }
+  
+  //generates a random number between 0-10 for p5
+  patient.m_p5 = randomNumber(0, 10, 1);
+}
+
+//Description: determines if the patient has Jejunal Hemorrhage Syndrome
+//Pre: requires a patient structure
+//Post: posts if the user has the disease and their protein levels
+//Return: none
+template <typename T>
+bool diseaseDetermine(T patient) 
+{
+  //variables
+  float p1 = patient.m_p1; //patient's protein 1 level
+  float p2 = patient.m_p2; //patient's protein 2 level
+  int p3 = patient.m_p3; //patient's protein 3 level
+  int p4 = patient.m_p4; //patient's protein 4 level
+  int p5 = patient.m_p5; //patient's protein 5 level
+  bool disease = false; //indicates if patient has disease or not
+  
+  //first method of determining if patient has disease
+  if(p5 < 2 && p4 >= 20 && p4 <= 40 && p3 > 6) {
+    disease = true;
+  }
+  
+  //second method of determining if the patient has disease
+  if(p5 <= 2 && (p1+p2+p3) < 75) {
+    disease = true;
+  }
+   
+  //third method of determining if the patient has disease
+  if(p2 <= 14.6) {
+    disease = true;
+  }
+  //returns disease
+  return disease;
+}
+
+//Description: greets the user
+//Pre: none
+//Post: greets the user
+//Return: none
+void greeting();
+
+//Description: signs the user off
+//Pre: none
+//Post: signs the user off
+//Return: none
+void signOff();
+
+#endif

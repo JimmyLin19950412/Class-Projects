@@ -1,0 +1,43 @@
+// Name: Luka Ivicevic
+// Section: E
+// File: patient.h
+// Desc: Class that simluates a patient
+
+#include <iostream>
+
+using namespace std;
+
+#ifndef PATIENT_H
+#define PATIENT_H
+
+class Patient
+{
+  public:
+    Patient();
+    // Desc: Default constructor for patient class
+    // Pre: None
+    // Post: Randomly assigns the patient money 0-4000, whether or not alive,
+    // and picks random name from a file
+    void pay_out(const int &amount);
+    // Desc: Reduces money from patient
+    // Pre: Positive integer passed in
+    // Post: Subtracts amount from the patient's money
+    void modify_health(const int &amount);
+    // Desc: Adds amount to the patient's condition
+    // Pre: Positive integer passed in
+    // Post: Adds amount to the patient's condition
+    friend ostream &operator<<(ostream &out, Patient &victim);
+    // Desc: Overloaded insertion operator to easily output the state of the
+    // patient
+  private:
+    float m_money;
+    bool m_is_alive;
+    int m_condition;
+    string m_name;
+    void kill();
+    // Desc: Checks whether or not the patient is dead
+    // Pre: None
+    // Post: Updates is_alive based on the liveliness of the patient
+};
+
+#endif

@@ -1,0 +1,7 @@
+Script started on Tue 07 Oct 2014 06:28:17 PM CDT
+g++ -Wall -W -s -pedantic-errors *.cpp -o 54drv && ./54drv && rm ./54drv
+/tmp/ccsqqtpR.o: In function `main':
+randomizer.cpp:(.text+0x0): multiple definition of `main'
+/tmp/ccPRMcAn.o:lab7.cpp:(.text+0x0): first defined here
+collect2: error: ld returned 1 exit status
+make: *** [run] Error 1

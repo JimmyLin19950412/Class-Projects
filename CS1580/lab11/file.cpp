@@ -1,0 +1,81 @@
+//Name: Jimmy Lin
+//Date: 11/4/2014
+//Section: C
+//File: file.cpp
+//Description: reads file and generates a student id for each student
+
+#include <iostream>
+#include <fstream>
+#include <string.h>
+
+using namespace std;
+
+//structure
+struct student
+{
+  char m_firstName[10];
+  char m_lastName[10];
+  char m_userID[20]; 
+};
+
+int main()
+{
+  //opens file
+  ifstream file;
+  ofstream popcorn;
+  file.open("input.txt");
+  popcorn.open("outputing.txt");
+  
+  //variables
+  //size of students array
+  const int STUDENTS_ARRAY_SIZE = 5;
+  
+  //declaring structure
+  student students[STUDENTS_ARRAY_SIZE];
+  
+  //loops through all students
+  for(int i = 0; i <= STUDENTS_ARRAY_SIZE - 1; i++) {
+    //adds first name to struct
+    file >> students[i].m_firstName;
+    //adds last name to struct
+    file >> students[i].m_lastName;
+    
+    //capitalizes the first letter of first name
+    students[i].m_firstName[0] = toupper(students[i].m_firstName[0]);  
+    //capitalizes the first letter of last name
+    students[i].m_lastName[0] = toupper(students[i].m_lastName[0]);
+    
+    //generates userID
+    strcpy(students[i].m_userID, students[i].m_lastName);
+    strcat(students[i].m_userID, "_");
+    strcat(students[i].m_userID, students[i].m_firstName);
+    
+    //lowercase the first letter of first name
+    students[i].m_firstName[0] = tolower(students[i].m_firstName[0]);
+    //lowercase the first letter of last name
+    students[i].m_lastName[0] = tolower(students[i].m_lastName[0]); 
+    
+    //replaces all e characters in user ID with an x
+    for(int j = 0; j <= 19; j++) {
+      //if letter is e then it is replaced with an x
+      if(students[i].m_userID[j] == 'e' || students[i].m_userID[j] == 'E') {
+        students[i].m_userID[j] = 'X';
+      }
+    }
+      
+    //outputs first name, last name, and userID into output
+    popcorn << students[i].m_firstName;
+    popcorn << " ";
+    popcorn << students[i].m_lastName;
+    popcorn << " ";
+    popcorn << students[i].m_userID;
+    popcorn << "\r\n";
+    
+  }
+  
+  //closes files
+  file.close();
+  popcorn.close();
+  
+  return 0;
+}

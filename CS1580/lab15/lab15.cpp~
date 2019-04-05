@@ -1,0 +1,80 @@
+//Name: Jimmy Lin
+//Date: 12/9/2014
+//File: lab15.cpp
+//Description: lab15
+
+#include <iostream>
+#include <math.h>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+  //variable
+  int input; //contains the user's input
+  int modAmount = 1; //amount used to mod a value
+  int digits = 0; //determines how many digits are in the user's number
+  int temp; //holds temperary number
+  int final; //holds the final number that will be used to compare to input
+  int temp2;
+  
+  //asks user to enter an integer
+  cout<<"Please enter an integer:";
+  cin>>input;
+  
+  //try block
+  try {
+    //if user input is a number, is good
+    if(cin.good()) {
+      //determines how many digits the user input
+      do {
+        //mulitplies modAmount by 10
+        modAmount *= 10;
+        
+        //increases number of digits by 1
+        digits += 1;
+      } while((input / modAmount) > 10);
+      
+      //increases digit by 1
+      digits++;
+      
+      //sets mod to 10
+      modAmount = 10;
+      
+      //makes temp2 equal to input
+      temp2 = input;
+      
+      //gets all the individual digts
+      for(int i = 0; i <= digits; i++) {
+        temp = temp2 % modAmount;
+        temp2 /= modAmount;
+        cout<<"temp "<<temp<<endl;
+        cout<<pow(temp,digits)<<endl;
+        final += pow(temp,digits); 
+      }
+
+      //compares the final to the user's input
+      if(final == input) {
+        //outputs confirmation
+        cout<<"Is Armstrong number!"<<endl;
+      }
+      //if not armstrong number
+      else {
+        //outputs not armstrong
+        cout<<"Is not Armstrong number!"<<endl;
+      }     
+    }
+    //if user input is not a number
+    else {
+      throw 0;
+    } 
+  }
+  //if user enters a character
+  catch(int e) {
+    //warning message
+    cout<<"You entered a character, please enter a number!"<<endl;
+  }
+  
+  return 0;
+}

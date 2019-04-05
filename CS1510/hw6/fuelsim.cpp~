@@ -1,0 +1,119 @@
+//Name: Jimmy Lin
+//Date: May 4, 2015
+//Class: C
+//File: fuelsim.cpp
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <vector>
+#include "abstractqueue.h"
+#include "abstractqueue.hpp"
+
+using namespace std;
+
+int main()
+{
+  fuelsim<int> arrival;
+  fuelsim<string> name;
+  fuelsim<int> units;
+  fuelsim<string> APort;
+  fuelsim<string> BPort;
+  fuelsim<string> CPort;
+  
+  int arrivalTime = 0;
+  string shipName = "";
+  int fuelUnits = 0;
+  
+  string shipInfo = "";
+  int numShips = 0;
+  int maxTime = 0;
+  int longWait = 0;
+  int shortWait = 0;
+  string shipLong;
+  string shipShort;
+  
+  int A = 0;
+  int B = 0;
+  int C = 0;
+  
+  cin>>numShips;
+  cin.ignore();
+  for(int i = 0; i < numShips; i++) {
+    getline(cin,shipInfo);
+    arrivalTime = atoi(shipInfo.substr(0, shipInfo.find(" ")).c_str());
+    shipInfo.erase(0, shipInfo.find(" ") + 1);
+    shipName = shipInfo.substr(0, shipInfo.find(" "));
+    shipInfo.erase(0, shipInfo.find(" ") + 1);
+    fuelUnits = atoi(shipInfo.substr(0).c_str());
+    
+    if(fuelUnits > maxTime) {
+      maxTime = fuelUnits;
+    }
+    if(fuelUnits > longWait) {
+      longWait = fuelUnits;
+      shipLong = shipName;
+    }
+    else {
+      shortWait = fuelUnits;
+      shipShort = shipName;
+    }
+    
+    cout<<arrivalTime<<endl;
+    cout<<shipName<<endl;
+    cout<<fuelUnits<<endl;
+    
+    arrival.enqueue(arrivalTime);
+    name.enqueue(shipName);
+    units.enqueue(fuelUnits*3);
+  }
+  
+  maxTime = maxTime*3;
+  
+  for(int i = 1; i <= maxTime; i++) {
+    for(int x = 0; x < numShips; x++) {
+      if(arrival.ships[x] == i) {
+        if(A <= B && A <= C) {
+          cout<<"At time "<<i<<" "<<name.ships[x]<<" joins port A"<<endl;
+          APort.enqueue(name.ships[x]);
+          A++;
+        }
+        else if(B <= A && B <= C) {
+          cout<<"At time "<<i<<" "<<name.ships[x]<<" joins port B"<<endl;
+          BPort.enqueue(name.ships[x]);
+          B++;
+        }
+        else if(C <= A && C <= B) {
+          cout<<"At time "<<i<<" "<<name.ships[x]<<"joins port C"<<endl;
+          CPort.enqueue(name.ships[x]);
+          C++;
+        }
+      }
+    }
+    
+    for(int y = 0; y < numShips; y++) {
+      if(units.ships[y] == i) {
+        cout<<"At time "<<i<<" "<<name.ships[y]	<<" is done fueling."<<endl;  
+        for(int ac = 0; ac < A; ac++) {
+          if(name.ships[y] == APort.ships[ac]) {
+            APort.dequeue();
+          }
+        }
+        for(int bc = 0; bc < B; bc++) {
+          if(name.ships[y] == BPort.ships[bc]) {
+            BPort.dequeue();
+          }
+        }
+        for(int cc = 0; cc < C; cc++) {
+          if(name.ships[y] == CPort.ships[cc]) {
+            CPort.dequeue();
+          }
+        } 
+      }
+    }  
+  }
+  
+  cout<<"Longest wait: "<<shipLong<<", "<<longWait<<" mins."<<endl;
+  cout<<"Shortest wait: "<<shipShort<<", "<<shortWait<<" mins."<<endl;
+  return 0;
+}

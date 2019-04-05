@@ -1,0 +1,32 @@
+// Name: Luka Ivicevic
+// Section: E
+// File: hospital_room.h
+// Desc: Simulates a hospital room
+#include <iostream>
+#include "patient.h"
+
+using namespace std;
+
+#ifndef HOSPITAL_ROOM_H
+#define HOSPITAL_ROOM_H
+
+
+class Hospital_Room
+{
+  public:
+    Hospital_Room();
+    // Desc: Default constructor for Hospital_Room
+    // Pre: None
+    // Post: Makes m_num_schraut = 10.0
+    void admit(Patient &victim);
+    // Desc: Admits the patient to the hospital
+    // Pre: None
+    // Post: Uses m_the_machine's functions on the patient to simulate a visit
+    friend ostream &operator << (ostream &out, Hospital_Room &HR);
+    // Desc: Easy output for Hospital_Room class
+  private:
+    X_Rayer m_the_machine;
+    float m_num_schraut;  
+};
+
+#endif
